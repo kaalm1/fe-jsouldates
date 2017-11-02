@@ -35,7 +35,6 @@ class LoginScreen extends React.Component {
 
   onPressSignUp = event => {
     const { navigate } = this.props.navigation;
-    this.props.fetchInfo()
     navigate('Transition1')
   }
 
@@ -94,21 +93,6 @@ class LoginScreen extends React.Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//     isLoading: state.login.loading,
-//     errors: state.login.errors,
-//     isTaken: state.signUp.isTaken
-//   };
-// };
-//
-// const mapDispatchToProps = (dispatch) => {
-//   return bindActionCreators({
-//     fetchInfo,
-//     login,
-//     loginAndFindPage,
-//   }, dispatch);
-// };
 
 export default connect(null)(LoginScreen);
 

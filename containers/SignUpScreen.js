@@ -130,29 +130,21 @@ class SignUpScreen extends React.Component {
      this.setState({
        messages: userValidation.messages
      })
-   } else {
-     this.props.resetEmailExists()
-     this.props.checkIfZipExists(this.state.zip)
-     .then(()=>{
-     this.props.checkIfEmailExists({email: this.state.email})
-     .then(()=>{
-       if (!this.props.isTaken && this.props.zipExists){
-         const { navigate } = this.props.navigation;
-         this.props.updateStoreMainInfo(this.state)
-         navigate('PictureProfile')
+   } else
+   {
+        const { navigate } = this.props.navigation;
+        this.props.updateStoreMainInfo(this.state)
+        navigate('PictureProfile')
        }
-     })
-     })
-   }
  }
 
   render() {
+    console.log(Religions)
     const { goBack, navigate } = this.props.navigation;
     const dob = this.state.dob ? moment(this.state.dob).format('LL') : ''
     return (
       <Container>
         <Content>
-          {/* {this.props.isLoading ? <ActivityIndicator animating={this.props.isLoading} size='large'/> : */}
           <Form>
             <Item floatingLabel>
               <Label>Name</Label>
@@ -163,7 +155,6 @@ class SignUpScreen extends React.Component {
               <Label>Email</Label>
               <Input name='email' keyboardType={'email-address'} autoCapitalize={'none'} onChangeText={(text)=>this.onChangeText(text,"email")} value={this.state.email}/>
             </Item>
-            {/* {this.props.isTaken ? <FormValidationMessage>Email is taken</FormValidationMessage> : null} */}
             {this.state.messages.email ? <FormValidationMessage>{this.state.messages.email[0]}</FormValidationMessage> : null}
             <Item floatingLabel>
               <Label>Password</Label>
@@ -184,8 +175,7 @@ class SignUpScreen extends React.Component {
               <Label>Zip Code</Label>
               <Input name='zip' keyboardType={'numeric'} maxLength={5} onChangeText={(text)=>this.onChangeNumber(text,"zip")} value={this.state.zip}/>
             </Item>
-            {/* {!this.props.zipExists ? <FormValidationMessage>Zip code does not exist</FormValidationMessage> : null} */}
-            {this.state.messages.zip ? <FormValidationMessage>{this.state.messages.zip[0]}</FormValidationMessage> : null}
+              {this.state.messages.zip ? <FormValidationMessage>{this.state.messages.zip[0]}</FormValidationMessage> : null}
             <Item>
               <Picker
                     iosHeader="Gender"
@@ -211,7 +201,7 @@ class SignUpScreen extends React.Component {
                   onValueChange={(value)=>this.onChangeText(value,'religion')}
                   style={{height:100, margin:-15}}
                 >
-                {Religions.map(religion=><Picker.Item key={religion.name} label={religion.name} value={religion.name} />)}
+                {Religions.religions.map(religion=><Picker.Item key={religion.name} label={religion.name} value={religion.name} />)}
             </Picker>
             </Item>
             {this.state.messages.religion ? <FormValidationMessage>{this.state.messages.religion[0]}</FormValidationMessage> : null}
@@ -219,7 +209,7 @@ class SignUpScreen extends React.Component {
               <Text>Next</Text>
             </Button>
 
-          </Form>}
+          </Form>
           </Content>
       </Container>
 
@@ -227,27 +217,8 @@ class SignUpScreen extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    // religions: state.signUp.info.religions,
-    // isLoading: state.signUp.loading,
-    // isTaken: state.signUp.isTaken,
-    // zipExists: state.signUp.zipExists,
-    // isInternet: state.signUp.isInternet
-  };
-};
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    // updateStoreMainInfo,
-    // checkIfZipExists,
-    // checkIfEmailExists,
-    // resetEmailExists
-  }, dispatch);
-};
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(SignUpScreen);
+export default connect(null)(SignUpScreen);
 
 AppRegistry.registerComponent('SignUp', () => SignUp);
 
