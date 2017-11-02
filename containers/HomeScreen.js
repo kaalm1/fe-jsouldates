@@ -26,31 +26,12 @@ actions: [
 
 class HomeScreen extends React.Component {
 
-  getLoginInfo = () => {
-    AsyncStorage.getItem(Config.JWT)
-    .then((value)=>{
-      value ? this.props.navigation.dispatch(resetPage(this.props.pageToNavigate)) : this.props.navigation.dispatch(resetLogin)})
-  }
 
 
   componentDidMount(){
-    if (!this.props.pageToNavigate){
-      AsyncStorage.getItem(Config.JWT)
-      .then((token)=>{if (token){
-        this.props.finishedSignUp(token)
-      } else {
-        this.props.navigation.dispatch(resetLogin)
-      }
-    })
-    }
-    else{
-      this.getLoginInfo()
-    }
+    this.props.navigation.dispatch(resetLogin)
   }
 
-  componentDidUpdate(){
-    this.getLoginInfo()
-  }
 
   render() {
     console.log('home screen')
@@ -64,14 +45,14 @@ class HomeScreen extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    isLoggedIn: state.login.auth.isLoggedIn,
-    pageToNavigate: state.login.page
+    // isLoggedIn: state.login.auth.isLoggedIn,
+    // pageToNavigate: state.login.page
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    finishedSignUp,
+    // finishedSignUp,
   }, dispatch);
 };
 

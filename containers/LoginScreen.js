@@ -32,18 +32,6 @@ class LoginScreen extends React.Component {
     headerBackTitle: " "
   };
 
-  componentWillMount() {
-    // I need to get device info!!
-    let uuid = uuidv1()
-    let userAgent = Platform.OS + Platform.Version
-    ga = new Analytics(Config.GA_KEY, uuid, 1, userAgent);
-    var screenView = new GAHits.ScreenView(
-      Config.APP_NAME,
-      'Welcome Screen',
-    );
-    ga.send(screenView);
-  }
-
 
   onPressSignUp = event => {
     const { navigate } = this.props.navigation;
@@ -79,7 +67,7 @@ class LoginScreen extends React.Component {
             <Label>Email</Label>
             <Input name='email' keyboardType={'email-address'} autoCapitalize={'none'} onChangeText={(email) => this.setState({email})} value={this.state.email}/>
           </Item>
-          {this.props.errors ? <FormValidationMessage>Incorrect username or password</FormValidationMessage> : null}
+          {/* {this.props.errors ? <FormValidationMessage>Incorrect username or password</FormValidationMessage> : null} */}
           <Item floatingLabel last>
             <Label>Password</Label>
             <Input secureTextEntry={true} name='password' onChangeText={(password) => this.setState({password})} value={this.state.password}/>
@@ -106,22 +94,22 @@ class LoginScreen extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    isLoading: state.login.loading,
-    errors: state.login.errors,
-    isTaken: state.signUp.isTaken
-  };
-};
+// const mapStateToProps = (state) => {
+//   return {
+//     isLoading: state.login.loading,
+//     errors: state.login.errors,
+//     isTaken: state.signUp.isTaken
+//   };
+// };
+//
+// const mapDispatchToProps = (dispatch) => {
+//   return bindActionCreators({
+//     fetchInfo,
+//     login,
+//     loginAndFindPage,
+//   }, dispatch);
+// };
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    fetchInfo,
-    login,
-    loginAndFindPage,
-  }, dispatch);
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
+export default connect(null)(LoginScreen);
 
 AppRegistry.registerComponent('Login', () => Login);

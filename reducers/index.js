@@ -3,10 +3,10 @@ import { NavigationActions } from 'react-navigation';
 
 import { AppNavigator } from '../navigators/AppNavigator';
 
-import login from './loginReducer'
-import signUp from './signUpReducer'
-import process from './processReducer'
-import users from './usersReducer'
+// import login from './loginReducer'
+// import signUp from './signUpReducer'
+// import process from './processReducer'
+// import users from './usersReducer'
 
 // Start with two routes: The Main screen, with the Login screen on top.
 const firstAction = AppNavigator.router.getActionForPathAndParams('Home');
@@ -75,10 +75,10 @@ function auth(state = initialAuthState, action) {
 const AppReducer = combineReducers({
   nav,
   auth,
-  login,
-  signUp,
-  process,
-  users
+  // login,
+  // signUp,
+  // process,
+  // users
 });
 
 export default AppReducer;

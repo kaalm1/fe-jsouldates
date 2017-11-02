@@ -1,0 +1,19 @@
+{
+  "religions": [
+  {
+    "name": "Christian",
+  },
+  {
+    "name": "Catholic",
+  },
+  {
+    "name": "Hinu",
+  },
+  {
+    "name": "Jewish",
+  },
+  {
+    "name": "Muslim",
+  }
+  ]
+}
