@@ -70,13 +70,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    updateStoreMainInfo,
-    editProfile,
-  }, dispatch);
-};
 
-export default connect(mapStateToProps,mapDispatchToProps)(PicturePick);
+
+export default connect(mapStateToProps)(PicturePick);
 
 AppRegistry.registerComponent('PicturePick', () => PicturePick);

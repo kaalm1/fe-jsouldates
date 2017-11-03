@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {updateStoreMainInfo} from '../actions/signUp'
 import { Container, Header, Content, ListItem, Text, Radio, Right, Button } from 'native-base';
-import Interest from '../components/SignUp/Interest'
 import HomeScreen from './HomeScreen'
 import InterestsScreen from './InterestsScreen'
 

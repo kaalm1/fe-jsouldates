@@ -9,6 +9,8 @@ import { Container, Header, Content, ListItem, Text, Radio, Right, Button, Card,
 import Vignette from '../components/SignUp/Vignette'
 import CustomMultiPicker from "../components/multiSelect";
 
+import Stories from '../data/idealPartnerShort'
+
 let numberOfVignettes = 10
 
 const resetIdealPartner = NavigationActions.reset({
@@ -31,7 +33,7 @@ class IdealPartnerScreen extends React.Component {
   }
 
   onPressAgree = () => {
-    let vignette = this.props.vignettes[this.state.answered].desc
+    let vignette = Stories.idealPartnerShort[this.state.answered].desc
     this.setState({
       agree: [...this.state.agree, vignette],
       answered: this.state.answered + 1
@@ -39,7 +41,7 @@ class IdealPartnerScreen extends React.Component {
   }
 
   onPressDisagree = () => {
-    let vignette = this.props.vignettes[this.state.answered].desc
+    let vignette = Stories.idealPartnerShort[this.state.answered].desc
     this.setState({
       disagree: [...this.state.disagree, vignette],
       answered: this.state.answered + 1
@@ -47,20 +49,13 @@ class IdealPartnerScreen extends React.Component {
   }
 
   componentDidUpdate(){
-    if (this.state.answered > this.props.vignettes.length - 1){
-      this.props.updateStoreMainInfo(this.state)
-      AsyncStorage.getItem(Config.JWT).then((value)=>this.props.postUserInfo(value, {page: 'finalVignetteAgree'}))
-      // const { navigate } = this.props.navigation;
-      // navigate('IdealPartnerContainer')
+    if (this.state.answered > Stories.idealPartnerShort.length - 1){
       this.props.navigation.dispatch(resetIdealPartner)
-    } else if (this.state.answered % 5 === 0){
-      this.props.updateStoreMainInfo(this.state)
-      AsyncStorage.getItem(Config.JWT).then((value)=>this.props.postUserInfo(value, {page: 'processVignetteAgree'}))
     }
   }
 
   render(){
-    let nextQuestion = (this.state.answered <= this.props.vignettes.length - 1) ? this.props.vignettes[this.state.answered].desc : null
+    let nextQuestion = (this.state.answered <= Stories.idealPartnerShort.length - 1) ? Stories.idealPartnerShort[this.state.answered].desc : null
     return(
       <Container style={{backgroundColor: 'skyblue'}}>
         <View style={{flex:0.3, justifyContent: 'center', alignItems: 'center'}}></View>
@@ -98,19 +93,8 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = (state) => {
-  return {
-    vignettes: state.signUp.info.idealPartner
-  };
-};
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    updateStoreMainInfo,
-    postUserInfo
-  }, dispatch);
-};
 
-export default connect(mapStateToProps,mapDispatchToProps)(IdealPartnerScreen);
+export default connect(null)(IdealPartnerScreen);
 
 AppRegistry.registerComponent('IdealPartner', () => IdealPartner);

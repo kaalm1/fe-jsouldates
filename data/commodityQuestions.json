@@ -1,0 +1,58 @@
+{
+  "commodityQuestions": [
+  {
+    "answers":  [
+       {
+        "desc": "This is important.",
+      },
+       {
+        "desc": "I want to dance",
+      },
+       {
+        "desc": "I want to sing.",
+      },
+       {
+        "desc": "I want to play.",
+      },
+       {
+        "desc": "I want to be gone all day.",
+      },
+       {
+        "desc": "Wouldn't it be lovely.",
+      },
+       {
+        "desc": "Song and dance and everything to do.",
+      },
+    ],
+    "desc": "Commodity 1",
+  },
+   {
+    "answers":  [
+       {
+        "desc": "This is important.",
+      },
+      {
+       "desc": "They can rock and roll.",
+     },
+     {
+      "desc": "They can run in the rain.",
+    },
+    ],
+    "desc": "Commodity 2",
+  },
+   {
+    "answers":  [
+       {
+        "desc": "This is important to me.",
+      },
+      {
+       "desc": "They can wiggle and tickle.",
+     },
+     {
+      "desc": "They can joke around and pray.",
+    },
+    ],
+    "desc": "Commodity 3",
+  },
+]
+}

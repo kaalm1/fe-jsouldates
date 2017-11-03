@@ -2,12 +2,13 @@ import React from 'react'
 import {AppRegistry, Platform, AsyncStorage, ActivityIndicator} from 'react-native'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
-import {updateStoreMainInfo, postUserInfo} from '../actions/signUp'
 import Config from '../config'
 import {NavigationActions} from 'react-navigation'
 import { Container, Header, Content, ListItem, Text, Radio, Right, Button, Toast } from 'native-base';
 import Vignette from '../components/SignUp/Vignette'
 import CustomMultiPicker from "../components/multiSelect";
+
+import Stories from '../data/idealPartnerMain'
 
 let maxNumberOfVignettes = 10
 
@@ -26,14 +27,12 @@ class IdealPartnerScreen extends React.Component {
 
   state = {
     selectedVignettes: [],
-    maxVignettes: Math.min(this.props.vignettes.length, maxNumberOfVignettes)
+    maxVignettes: Math.min(Stories.idealPartnerMain.length, maxNumberOfVignettes)
   }
 
   onPressNext = () => {
     if (this.state.selectedVignettes.length === maxNumberOfVignettes){
       const { navigate } = this.props.navigation;
-      this.props.updateStoreMainInfo(this.state)
-      AsyncStorage.getItem(Config.JWT).then((value)=>this.props.postUserInfo(value, {page: 'selectedVignettes'}))
       navigate('Transition4')
     } else {
       Toast.show({
@@ -45,33 +44,9 @@ class IdealPartnerScreen extends React.Component {
 
   }
 
-  // addOrRemoveSelection = (isSelected, obj) => {
-  //   if (!isSelected){
-  //     this.setState({
-  //       selectedVignettes: [...this.state.selectedVignettes, obj]
-  //     })
-  //   } else {
-  //     newSelected = this.state.selectedVignettes.filter(vignette=>vignette.desc!==obj.desc)
-  //     this.setState({
-  //       selectedVignettes: newSelected
-  //     })
-  //   }
-  // }
-  // componentDidUpdate(){
-  //   if (this.props.skipVignette){
-  //     this.props.navigation.dispatch(resetInterests)
-  //   }
-  // }
-
-  // componentDidMount(){
-  //   console.log(this.props.vignettes)
-  //   if (this.props.skipVignette){
-  //     this.props.navigation.dispatch(resetInterests)
-  //   }
-  // }
 
   render(){
-    let items = Object.assign({},this.props.vignettes.map((x)=>Object.values(x)[0]))
+    let items = Object.assign({},Stories.idealPartnerMain.map((x)=>Object.values(x)[0]))
     return(
       <Container>
         {/* <ActivityIndicator animating={this.props.isLoading} size='large'/> */}
@@ -97,7 +72,6 @@ class IdealPartnerScreen extends React.Component {
               selected={[]} // list of options which are selected by default
               totalSelectionAllowed={this.state.maxVignettes}
             />
-              {/* {this.props.vignettes.map(vignette=><Vignette key={vignette.desc} vignette={vignette} addOrRemoveSelection={this.addOrRemoveSelection}/>)} */}
               <Button block  onPress={this.onPressNext} style={{margin:10}}>
                 <Text>Next</Text>
               </Button>
@@ -108,21 +82,8 @@ class IdealPartnerScreen extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    vignettes: state.signUp.info.idealPartner,
-    isLoading: state.signUp.loading,
-    skipVignette: state.signUp.skipVignette
-  };
-};
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    updateStoreMainInfo,
-    postUserInfo
-  }, dispatch);
-};
 
-export default connect(mapStateToProps,mapDispatchToProps)(IdealPartnerScreen);
+export default connect(null)(IdealPartnerScreen);
 
 AppRegistry.registerComponent('IdealPartner', () => IdealPartner);

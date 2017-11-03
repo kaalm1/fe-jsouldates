@@ -29,17 +29,6 @@ class PictureProfileScreen extends Component {
   onPress = () => {
     let image = this.state.selected[0]
     if (image !== undefined){
-      let imageUri = image.uri
-      let imageName = image.filename
-      let imageType = 'image/' + imageUri.split('ext=')[1]
-      const file = {
-        // `uri` can also be a file system path (i.e. file://)
-        uri: imageUri,
-        name: imageName,
-        type: imageType
-      }
-
-        this.props.updateStoreMainInfo({picture: file})
         const { navigate } = this.props.navigation;
         navigate('Transition2')
 
@@ -72,13 +61,13 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    updateStoreMainInfo,
-    editProfile,
-  }, dispatch);
-};
+// const mapDispatchToProps = (dispatch) => {
+//   return bindActionCreators({
+//     updateStoreMainInfo,
+//     editProfile,
+//   }, dispatch);
+// };
 
-export default connect(mapStateToProps,mapDispatchToProps)(PictureProfileScreen);
+export default connect(mapStateToProps)(PictureProfileScreen);
 
 AppRegistry.registerComponent('PictureProfile', () => PictureProfile);

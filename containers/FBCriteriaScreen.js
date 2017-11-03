@@ -4,7 +4,6 @@ import Config from '../config'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {updateStoreMainInfo, postFBInfo} from '../actions/signUp'
-import ReligionList from '../components/SignUp/ReligionList'
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import { Container, Header, Content, Form, Item, Input, Label, Button, Text, Picker, Toast } from 'native-base';
 

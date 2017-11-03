@@ -1,0 +1,58 @@
+{
+  "commoditySelf": [
+  {
+    "answers":  [
+       {
+        "desc": "This is important.",
+      },
+       {
+        "desc": "I want to travel to the moon.",
+      },
+       {
+        "desc": "I want to climb Mt. Everest.",
+      },
+       {
+        "desc": "I want to skydive.",
+      },
+       {
+        "desc": "I want like to change the world!",
+      },
+       {
+        "desc": "Lots of choclate for me to eat",
+      },
+       {
+        "desc": "Musicals, broadways, and tigers, oh my!!",
+      },
+    ],
+    "desc": "Commodity Self 1",
+  },
+   {
+    "answers":  [
+       {
+        "desc": "This is important.",
+      },
+      {
+       "desc": "I will travel the world.",
+     },
+     {
+      "desc": "I can read books for hours with no end.",
+    },
+    ],
+    "desc": "Commodity Self 2",
+  },
+   {
+    "answers":  [
+       {
+        "desc": "This is important to me.",
+      },
+      {
+       "desc": "I am me and that is we.",
+     },
+     {
+      "desc": "I love hiking!!",
+    },
+    ],
+    "desc": "Commodity Self 3",
+  },
+]
+}

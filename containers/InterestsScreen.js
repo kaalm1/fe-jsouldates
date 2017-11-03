@@ -2,9 +2,7 @@ import React from 'react'
 import {AppRegistry, Platform, AsyncStorage} from 'react-native'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
-import {updateStoreMainInfo, postUserInfo} from '../actions/signUp'
 import { Container, Header, Content, ListItem, Text, Radio, Right, Button, Toast } from 'native-base';
-import Interest from '../components/SignUp/Interest'
 import LoginScreen from './LoginScreen'
 import Config from '../config'
 
@@ -29,29 +27,10 @@ class InterestsScreen extends React.Component {
     selectedInterests: []
   }
 
-  // addOrRemoveSelection = (isSelected, obj) => {
-  //   if (!isSelected){
-  //     this.setState({
-  //       selectedInterests: [...this.state.selectedInterests, obj]
-  //     })
-  //   } else {
-  //     newSelected = this.state.selectedInterests.filter(interest=>interest.desc!==obj.desc)
-  //     this.setState({
-  //       selectedInterests: newSelected
-  //     })
-  //   }
-  // }
-
-  // notSuccessful = () => {
-  //   const { navigate } = this.props.navigation;
-  //   navigate('SignUp')
-  // }
 
   onPressNext = () => {
     if (this.state.selectedInterests.length === numberOfInterests) {
-      this.props.updateStoreMainInfo(this.state)
-      AsyncStorage.getItem(Config.JWT).then((value)=>this.props.postUserInfo(value, {page: 'selectedInterests'}))
-      this.props.navigation.dispatch(resetSpecificInterests)
+        this.props.navigation.dispatch(resetSpecificInterests)
     } else {
       Toast.show({
                text: 'Please choose 5 interests',
@@ -100,19 +79,7 @@ class InterestsScreen extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    interests: state.signUp.info.interestList,
-  };
-};
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    updateStoreMainInfo,
-    postUserInfo
-  }, dispatch);
-};
-
-export default connect(mapStateToProps,mapDispatchToProps)(InterestsScreen);
+export default connect(null)(InterestsScreen);
 
 AppRegistry.registerComponent('Interests', () => Interests);

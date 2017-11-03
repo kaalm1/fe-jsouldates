@@ -1,0 +1,40 @@
+{
+  "user" :  {
+  "name": "Joe",
+  "picture_url": "https://s-media-cache-ak0.pinimg.com/originals/07/0c/39/070c39317fd6cd037285fbd7ffed4028.png",
+  "profile": "Hello This is Blank for Now :)",
+  "religion":  {
+    "name": "Muslim",
+  },
+  "search_criterium":  {
+    "max_age": 35,
+    "max_distance": 50,
+    "min_age": 20,
+    "religions":  [
+       {
+        "name": "Buddhist",
+      },
+       {
+        "name": "Christian",
+      },
+       {
+        "name": "Catholic",
+      },
+       {
+        "name": "Hinu",
+      },
+       {
+        "name": "Jewish",
+      },
+       {
+        "name": "Muslim",
+      },
+       {
+        "name": "Sikh",
+      },
+    ],
+  },
+  "uuid": "69d2cbe5-ad50-4617-9606-d5dc3003b79a",
+  "zip": 10003,
+}
+}

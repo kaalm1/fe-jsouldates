@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {updateStoreMainInfo, createUser, createUserAndLogin, addPicture} from '../actions/signUp'
 import {login} from '../actions/login'
-import ReligionList from '../components/SignUp/ReligionList'
 import { Container, Header, Content, Form, Item, Input, Label, Button, Text, Picker, Toast } from 'native-base';
 import { NavigationActions } from 'react-navigation'
 // Must go into the node files and take out all font related items or give an altfont that works for iOs and Android
@@ -12,6 +11,8 @@ import MultiSelect from '../components/multiDropdownSelect';
 import {FormValidationMessage} from 'react-native-elements'
 var ValidateModel = require('validate-model');
 var validateAll = ValidateModel.validateAll;
+
+import Religions from '../data/religions'
 
 var UserValidators = {
   criteriaGender: {
@@ -38,14 +39,6 @@ var UserValidators = {
       message: '{TITLE} must be at least 10 mile radius'
     }]
   }
-  // criteriaReligions: {
-  //   title: 'Religion(s)',
-  //   validate: [{
-  //     validator: 'isLength',
-  //     arguments: [1, 255],
-  //     message: '{TITLE} missing'
-  //   }]
-  // },
 };
 
 
@@ -100,19 +93,6 @@ class CriteriaScreen extends React.Component {
     });
   }
 
-  // addOrRemoveSelection = (isSelected, obj) => {
-  //   if (!isSelected){
-  //     this.setState({
-  //       selectedInterests: [...this.state.criteriaReligions, obj]
-  //     })
-  //   } else {
-  //     newSelected = this.state.criteriaReligions.filter(religion=>religion.name!==obj.name)
-  //     this.setState({
-  //       selectedInterests: newSelected
-  //     })
-  //   }
-  // }
-
 
   onPressNext = () => {
     var userValidation = validateAll(UserValidators, this.state)
@@ -128,18 +108,9 @@ class CriteriaScreen extends React.Component {
       this.setState({
         messages: userValidation.messages
       })
-      // Toast.show({
-      //          text: Object.values(userValidation.messages).join(`\n`),
-      //          position: 'bottom',
-      //          buttonText: 'Okay'
-      //        })
     } else{
     const { navigate } = this.props.navigation;
-    this.props.updateStoreMainInfo(this.state)
-    this.props.createUserAndLogin({auth: {email:this.props.email, password:this.props.password}})
     navigate('CheckSignedIn')
-    // this.props.navigation.dispatch(resetWaiting)
-    // this.props.navigation.dispatch(resetCommodity)
     }
   }
 
@@ -156,7 +127,7 @@ class CriteriaScreen extends React.Component {
           <Header><Text>My Ideal Partner is...</Text></Header>
           <Form>
             <MultiSelect
-              items={[{name: 'Any'},...this.props.religions]}
+              items={[{name: 'Any'},...Religions.religions]}
               uniqueKey="name"
               selectedItemsChange={selectedItem}
               selectedItems={[]}
@@ -216,24 +187,8 @@ class CriteriaScreen extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    religions: state.signUp.info.religions,
-    email: state.signUp.inputs.email,
-    password: state.signUp.inputs.password
-  };
-};
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    updateStoreMainInfo,
-    createUserAndLogin,
-    addPicture,
-    createUser,
-    login,
-  }, dispatch);
-};
 
-export default connect(mapStateToProps,mapDispatchToProps)(CriteriaScreen);
+export default connect(null)(CriteriaScreen);
 
 AppRegistry.registerComponent('Criteria', () => Criteria);

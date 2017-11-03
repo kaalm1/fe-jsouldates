@@ -5,7 +5,6 @@ import {FormValidationMessage} from 'react-native-elements'
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
-import {updateStoreMainInfo, checkIfZipExists, checkIfEmailExists, resetEmailExists} from '../actions/signUp'
 
 var moment = require('moment');
 var ValidateModel = require('validate-model');
@@ -133,13 +132,11 @@ class SignUpScreen extends React.Component {
    } else
    {
         const { navigate } = this.props.navigation;
-        this.props.updateStoreMainInfo(this.state)
         navigate('PictureProfile')
        }
  }
 
   render() {
-    console.log(Religions)
     const { goBack, navigate } = this.props.navigation;
     const dob = this.state.dob ? moment(this.state.dob).format('LL') : ''
     return (

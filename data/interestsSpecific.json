@@ -1,0 +1,96 @@
+{
+  "interests":  [
+   {
+    "answers":  [
+       {
+        "desc": "Sitting",
+      },
+       {
+        "desc": "Playing",
+      },
+       {
+        "desc": "Reminising",
+      },
+       {
+        "desc": "Networking",
+      },
+       {
+        "desc": "Giving",
+      },
+       {
+        "desc": "Socializing",
+      },
+    ],
+    "desc": "Alumni connections",
+  },
+   {
+    "answers":  [
+       {
+        "desc": "Boring",
+      },
+       {
+        "desc": "Cool",
+      },
+       {
+        "desc": "Interesting",
+      },
+       {
+        "desc": "Innovation!",
+      },
+    ],
+    "desc": "Book club",
+  },
+   {
+    "answers":  [
+       {
+        "desc": "Strategic",
+      },
+       {
+        "desc": "Satisfying",
+      },
+       {
+        "desc": "Socializing",
+      },
+    ],
+    "desc": "Business networking",
+  },
+   {
+    "answers":  [
+       {
+        "desc": "Ah fresh air :)",
+      },
+       {
+        "desc": "Excercise",
+      },
+       {
+        "desc": "Peaceful",
+      },
+       {
+        "desc": "Simple",
+      },
+       {
+        "desc": "Cool!",
+      },
+    ],
+    "desc": "Camping",
+  },
+   {
+    "answers":  [
+       {
+        "desc": "Tastes good!",
+      },
+       {
+        "desc": "No coffee! No way!",
+      },
+       {
+        "desc": "It's a lifesaver",
+      },
+       {
+        "desc": "Wakes me up every time.",
+      },
+    ],
+    "desc": "Coffee and conversation",
+  },
+]
+
+}

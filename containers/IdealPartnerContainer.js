@@ -21,29 +21,18 @@ class IdealPartnerContainer extends React.Component {
     title: "Ideal Partner",
   });
 
-  componentDidUpdate(){
-    if (this.props.skipVignette){
-      this.props.navigation.dispatch(resetInterests)
-    }
-  }
 
   render(){
     return(
       <Container>
-        {this.props.isLoading ? <ActivityIndicator animating={true} size='large'/> : <IdealPartnerScreen navigation={this.props.navigation}/> }
+        <IdealPartnerScreen navigation={this.props.navigation}/>
       </Container>
     )
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    isLoading: state.signUp.loading,
-    skipVignette: state.signUp.skipVignette
-  };
-};
 
 
-export default connect(mapStateToProps)(IdealPartnerContainer);
+export default connect(null)(IdealPartnerContainer);
 
 AppRegistry.registerComponent('IdealPartnerContainer', () => IdealPartnerContainer);

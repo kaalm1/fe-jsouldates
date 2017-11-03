@@ -2,10 +2,11 @@ import React from 'react'
 import {AppRegistry, Platform, AsyncStorage} from 'react-native'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
-import {updateStoreMainInfo, postUserInfo} from '../actions/signUp'
 import { Container, Header, Content, List, ListItem, Text, Radio, Right, Button, Item, Label, Toast, Body, Left, Icon } from 'native-base';
 import CommodityQuestionsScreen from './CommodityQuestionsScreen'
 import Config from '../config'
+
+import Questions from '../data/commoditySelf'
 
 
 
@@ -34,9 +35,7 @@ class CommoditySelfScreen extends React.Component {
   }
 
   onPressNext = () => {
-    if (this.state.commoditySelfAnswers.length === this.props.commodityQuestions.length){
-      this.props.updateStoreMainInfo(this.state)
-      AsyncStorage.getItem(Config.JWT).then((value)=>this.props.postUserInfo(value, {page: 'commoditySelfAnswers'}))
+    if (this.state.commoditySelfAnswers.length === Questions.commoditySelf.length){
       const { navigate } = this.props.navigation;
       navigate('Interests')
     } else {
@@ -51,7 +50,7 @@ class CommoditySelfScreen extends React.Component {
 
 
   render(){
-    let dataArray = this.props.commodityQuestions
+    let dataArray = Questions.commoditySelf
     return(
       <Container>
         <Content>
@@ -66,20 +65,8 @@ class CommoditySelfScreen extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    commodityQuestions: state.signUp.info.commodityQuestionsSelf,
-    info: state.signUp.inputs
-  };
-};
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    updateStoreMainInfo,
-    postUserInfo
-  }, dispatch);
-};
 
-export default connect(mapStateToProps,mapDispatchToProps)(CommoditySelfScreen);
+export default connect(null)(CommoditySelfScreen);
 
 AppRegistry.registerComponent('CommoditySelf', () => CommoditySelf);
