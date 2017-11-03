@@ -3,8 +3,6 @@ import { AppRegistry, Image, AsyncStorage } from 'react-native';
 import { Container, Content, Header, View, DeckSwiper, Card, CardItem, Thumbnail, Text, Left, Right, Body, Icon, Button , Badge} from 'native-base';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import {acceptMatch,rejectMatch,getMatchUuid} from '../actions/users'
-import {navTo} from '../actions/nav'
 import Config from '../config'
 import {NavigationActions} from 'react-navigation'
 
@@ -12,11 +10,11 @@ import {NavigationActions} from 'react-navigation'
 class Match extends React.Component {
 
   onPressAccept =() =>{
-    AsyncStorage.getItem(Config.JWT).then((value)=>this.props.acceptMatch(this.props.match.uuid,value))
+
   }
 
   onPressReject =() =>{
-    AsyncStorage.getItem(Config.JWT).then((value)=>this.props.rejectMatch(this.props.match.uuid,value))
+
   }
 
 
@@ -51,20 +49,11 @@ class Match extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    userUuid: state.users.user.uuid,
     navigation: state.nav
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    acceptMatch,
-    rejectMatch,
-    getMatchUuid,
-    navTo,
-  }, dispatch);
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Match);
+export default connect(mapStateToProps)(Match);
 
 AppRegistry.registerComponent('Match', () => Match);

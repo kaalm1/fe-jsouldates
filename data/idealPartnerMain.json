@@ -1,13 +1,40 @@
 {
   "idealPartnerMain": [
    {
-    "desc": "S/he has diplomas and/or awards that show what they've achieved",
+    "desc": "S/he is a freedom fighter.",
   },
    {
-    "desc": "S/he can follow instruction precisely",
+    "desc": "S/he has travelled the world.",
   },
    {
-    "desc": "S/he is goal-oriented.",
+    "desc": "S/he has a good heart.",
   },
+  {
+   "desc": "S/he is highly educated.",
+ },
+  {
+   "desc": "S/he knows how to find a good deal.",
+ },
+  {
+   "desc": "S/he watches the Superbowl religiously.",
+ },
+ {
+  "desc": "S/he never complains.",
+},
+ {
+  "desc": "S/he helps out at a homeless shelter.",
+},
+ {
+  "desc": "S/he always does whats right.",
+},
+{
+ "desc": "S/he went to Harvard.",
+},
+{
+ "desc": "S/he started their own company.",
+},
+{
+ "desc": "S/he is loved by all!",
+},
   ]
 }

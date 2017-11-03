@@ -9,6 +9,7 @@ import Config from '../config'
 import { NavigationActions } from 'react-navigation'
 import FunQuestionsFinished from './funQuestionsFinished'
 
+import Question from '../data/funQuestion'
 
 const resetHome = NavigationActions.reset({
 index: 0,
@@ -28,8 +29,7 @@ class FunQuestionScreen extends React.Component {
   }
 
   onPressDone = () => {
-    AsyncStorage.getItem(Config.JWT).then((value)=>this.props.postFunAnswer(value, this.state))
-    this.props.navigation.dispatch(resetHome)
+      this.props.navigation.dispatch(resetHome)
   }
 
   onPressCancel = () => {
@@ -37,32 +37,17 @@ class FunQuestionScreen extends React.Component {
     goBack()
   }
 
-  // addOrRemoveSelection = (isSelected, obj) => {
-  //   if (!isSelected){
-  //     this.setState({
-  //       selectedVignettes: [...this.state.selectedVignettes, obj]
-  //     })
-  //   } else {
-  //     newSelected = this.state.selectedVignettes.filter(vignette=>vignette.desc!==obj.desc)
-  //     this.setState({
-  //       selectedVignettes: newSelected
-  //     })
-  //   }
-  // }
-  componentWillMount(){
-    AsyncStorage.getItem(Config.JWT).then((value)=>this.props.getFunQuestion(value))
-  }
 
   render(){
     let items = {}
-    if (this.props.question){
-      items = Object.assign({},this.props.question.answers.map((x)=>Object.values(x)[0]))
+    if (Question.question){
+      items = Object.assign({},Question.question.answers.map((x)=>Object.values(x)[0]))
     }
     return(
       <Container>
-      { (!this.props.question) ? <FunQuestionsFinished /> :
+      { (!Question.question) ? <FunQuestionsFinished /> :
         <Container>
-        <Header><Text style={{textAlign: 'center'}}>{this.props.question.desc}</Text></Header>
+        <Header><Text style={{textAlign: 'center'}}>{Question.question.desc}</Text></Header>
         <Content>
           <CustomMultiPicker
             options={items}
@@ -81,7 +66,7 @@ class FunQuestionScreen extends React.Component {
             unselectedIconName={"ios-radio-button-off-outline"}
             // scrollViewHeight={550}
             selected={[]} // list of options which are selected by default
-            totalSelectionAllowed={this.props.question.num_of_answers}
+            totalSelectionAllowed={Question.question.num_of_answers}
           />
             {/* {this.props.vignettes.map(vignette=><Vignette key={vignette.desc} vignette={vignette} addOrRemoveSelection={this.addOrRemoveSelection}/>)} */}
             <Footer>
@@ -102,20 +87,7 @@ class FunQuestionScreen extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    question: state.users.funQuestion,
-    loadingQuestion: state.users.loadingQuestion
-  };
-};
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    getFunQuestion,
-    postFunAnswer
-  }, dispatch);
-};
-
-export default connect(mapStateToProps,mapDispatchToProps)(FunQuestionScreen);
+export default connect(null)(FunQuestionScreen);
 
 AppRegistry.registerComponent('FunQuestion', () => FunQuestion);

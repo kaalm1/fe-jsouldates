@@ -4,6 +4,8 @@ import {Container, Content, Footer, FooterTab, Card, CardItem, Left, Right, Body
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 
+import User from '../data/profile'
+
 class MainProfile extends React.Component{
 
   onPressQuestions = () => {
@@ -20,7 +22,7 @@ class MainProfile extends React.Component{
   }
 
   render(){
-    const image = {uri: this.props.user.picture_url}
+    const image = {uri: User.user.picture_url}
     return(
       <Container>
       <Card style={{ elevation: 3 }}>
@@ -28,8 +30,8 @@ class MainProfile extends React.Component{
           <Left>
             <Thumbnail source={image} />
             <Body>
-              <Text>{this.props.user.name}</Text>
-              <Text note>{this.props.user.zip}</Text>
+              <Text>{User.user.name}</Text>
+              <Text note>{User.user.zip}</Text>
             </Body>
           </Left>
         </CardItem>
@@ -42,7 +44,7 @@ class MainProfile extends React.Component{
         </CardItem>
         <CardItem>
           <Icon name="heart" style={{ color: '#ED4A6A' }} />
-          <Text>{this.props.user.profile}</Text>
+          <Text>{User.user.profile}</Text>
         </CardItem>
       </Card>
         <Footer>
@@ -61,18 +63,8 @@ class MainProfile extends React.Component{
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.users.user
-  };
-};
 
-// const mapDispatchToProps = (dispatch) => {
-//   return bindActionCreators({
-//     getMatches,
-//   }, dispatch);
-// };
 
-export default connect(mapStateToProps)(MainProfile);
+export default connect(null)(MainProfile);
 
 AppRegistry.registerComponent('Profile', () => MainProfile);

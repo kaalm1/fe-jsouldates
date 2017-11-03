@@ -12,6 +12,9 @@ const Entities = require('html-entities').XmlEntities;
 const entities = new Entities();
 // const USER_ID = '@userId';
 
+import User from '../data/profile'
+import Dates from '../data/dating'
+
 class ChatScreen extends React.Component{
   static navigationOptions = ({navigation}) => ({
     title: navigation.state.params.user,
@@ -27,7 +30,7 @@ class ChatScreen extends React.Component{
       loadEarlier: true,
       // typingText: null,
       isLoadingEarlier: false,
-      chatId: this.props.userUuid > this.props.dateUuid ? this.props.userUuid + this.props.dateUuid : this.props.dateUuid + this.props.userUuid
+      chatId: User.user.uuid > Dates.dating[0].uuid ? User.user.uuid + Dates.dating[0].uuid : Dates.dating[0].uuid + User.user.uuid
     };
 
     let chatId = this.state.chatId
@@ -126,8 +129,8 @@ class ChatScreen extends React.Component{
   infoToSend = (messages=[]) => {
     let message = messages[0]
     message.chatId = this.state.chatId
-    message.user.avatar = this.props.userPicUrl
-    message.user.name = this.props.name
+    message.user.avatar = User.user.picture_url
+    message.user.name = User.user.name
     messages[0] = message
     this.socket.emit('message', message);
     this._storeMessages(messages);
@@ -277,17 +280,9 @@ renderCustomView(props) {
 
 }
 
-const mapStateToProps = (state) => {
-  return {
-    userUuid: state.users.user.uuid,
-    dateUuid: state.users.matchUuid,
-    userPicUrl: state.users.user.picture_url,
-    name: state.users.user.name
-  };
-};
 
 
-export default connect(mapStateToProps)(ChatScreen);
+export default connect(null)(ChatScreen);
 
 AppRegistry.registerComponent('Chat', () => Chat);
 

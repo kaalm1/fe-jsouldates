@@ -12,6 +12,9 @@ import {FormValidationMessage} from 'react-native-elements'
 var ValidateModel = require('validate-model');
 var validateAll = ValidateModel.validateAll;
 
+import Religions from '../data/religions'
+import User from '../data/profile'
+
 var UserValidators = {
   zip: {
     title: 'Zipcode',
@@ -45,12 +48,12 @@ class EditProfile extends React.Component{
   });
   // Preferably get a message that states that it was updated successfully
   state = {
-    zip: this.props.userZip.toString(),
-    religion: this.props.userReligion,
-    minAge: this.props.criteria.min_age.toString(),
-    maxAge: this.props.criteria.max_age.toString(),
-    maxDistance: this.props.criteria.max_distance.toString(),
-    criteriaReligions: this.props.criteria.religions,
+    zip: User.user.zip.toString(),
+    religion: User.user.religion.name,
+    minAge: User.user.search_criterium.min_age.toString(),
+    maxAge: User.user.search_criterium.max_age.toString(),
+    maxDistance: User.user.search_criterium.max_distance.toString(),
+    criteriaReligions: User.user.search_criterium.religions,
     messages: {
       zip: '',
       minAge: '',
@@ -74,12 +77,12 @@ class EditProfile extends React.Component{
 
   onPressCancel = () => {
     this.setState({
-      zip: this.props.userZip.toString(),
-      religion: this.props.userReligion,
-      minAge: this.props.criteria.min_age.toString(),
-      maxAge: this.props.criteria.max_age.toString(),
-      maxDistance: this.props.criteria.max_distance.toString(),
-      criteriaReligions: this.props.criteria.religions,
+      zip: User.user.zip.toString(),
+      religion: User.user.religion.name,
+      minAge: User.user.search_criterium.min_age.toString(),
+      maxAge: User.user.search_criterium.max_age.toString(),
+      maxDistance: User.user.search_criterium.max_distance.toString(),
+      criteriaReligions: User.user.search_criterium.religions,
       messages: {
         zip: '',
         minAge: '',
@@ -106,7 +109,6 @@ class EditProfile extends React.Component{
         messages: userValidation.messages
       })
     } else{
-      AsyncStorage.getItem(Config.JWT).then((value)=>this.props.editProfile(this.state, value))
       const { goBack } = this.props.navigation;
       goBack()
     }
@@ -150,7 +152,7 @@ class EditProfile extends React.Component{
                     onValueChange={(value)=>this.onChangeText(value,'religion')}
                     style={{height:100, margin:-15}}
                   >
-                  {this.props.religions.map(religion=><Picker.Item key={religion.name} label={religion.name} value={religion.name} />)}
+                  {Religions.religions.map(religion=><Picker.Item key={religion.name} label={religion.name} value={religion.name} />)}
               </Picker>
             </Item>
 
@@ -178,10 +180,10 @@ class EditProfile extends React.Component{
             {this.state.messages.maxAge ? <FormValidationMessage>{this.state.messages.maxAge[0]}</FormValidationMessage> : null}
 
             <MultiSelect
-              items={[{name: 'Any'},...this.props.religions]}
+              items={[{name: 'Any'},...Religions.religions]}
               uniqueKey="name"
               selectedItemsChange={selectedItem}
-              selectedItems={this.props.criteria.religions}
+              selectedItems={User.user.search_criterium.religions}
               selectText="Pick Religions"
               searchInputPlaceholderText="Search Items..."
               tagRemoveIconColor="#CCC"
@@ -215,22 +217,8 @@ class EditProfile extends React.Component{
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    criteria: state.users.user.search_criterium,
-    userReligion: state.users.user.religion.name,
-    userZip: state.users.user.zip,
-    religions: state.login.religions,
-  };
-};
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    editProfile,
-  }, dispatch);
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(EditProfile);
+export default connect(null)(EditProfile);
 
 AppRegistry.registerComponent('Profile', () => Profile);
 

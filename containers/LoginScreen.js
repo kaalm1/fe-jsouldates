@@ -40,7 +40,6 @@ class LoginScreen extends React.Component {
 
   onPressLogin = event => {
     const { navigate } = this.props.navigation;
-    this.props.loginAndFindPage({auth: {email:this.state.email.toLowerCase(),password:this.state.password}})
     navigate('LoginWaiting')
   }
 

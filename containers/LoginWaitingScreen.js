@@ -9,10 +9,10 @@ import InterestsScreen from './InterestsScreen'
 
 import { NavigationActions } from 'react-navigation'
 
-const resetHome = NavigationActions.reset({
+const resetMain = NavigationActions.reset({
 index: 0,
 actions: [
-  NavigationActions.navigate({ routeName: 'Home'})
+  NavigationActions.navigate({ routeName: 'Main'})
   ]
 })
 
@@ -20,7 +20,7 @@ actions: [
 class LoginWaitingScreen extends React.Component {
 
   componentDidMount(){
-    this.props.isLoading ? this.props.navigation.dispatch(resetHome) : null
+    this.props.navigation.dispatch(resetMain)
   }
 
   render(){
@@ -32,13 +32,8 @@ class LoginWaitingScreen extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    isLoading: state.login.checkLoading,
-  };
-};
 
 
-export default connect(mapStateToProps)(LoginWaitingScreen);
+export default connect(null)(LoginWaitingScreen);
 
 AppRegistry.registerComponent('LoginWaitingScreen', () => LoginWaitingScreen);

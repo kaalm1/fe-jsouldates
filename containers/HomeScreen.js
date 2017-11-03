@@ -7,7 +7,6 @@ import LoginScreen from './LoginScreen'
 import { NavigationActions } from 'react-navigation'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import {finishedSignUp} from '../actions/login'
 import Expo from 'expo'
 
 const resetLogin = NavigationActions.reset({
@@ -34,7 +33,6 @@ class HomeScreen extends React.Component {
 
 
   render() {
-    console.log('home screen')
     return (
       // <Container>
         <ActivityIndicator animating={true} size='large'/>
@@ -43,20 +41,8 @@ class HomeScreen extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    // isLoggedIn: state.login.auth.isLoggedIn,
-    // pageToNavigate: state.login.page
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    // finishedSignUp,
-  }, dispatch);
-};
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
+export default connect(null)(HomeScreen);
 
 AppRegistry.registerComponent('Home', () => Home);

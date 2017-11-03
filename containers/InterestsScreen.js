@@ -9,6 +9,8 @@ import Config from '../config'
 import CustomMultiPicker from "../components/multiSelect";
 import { NavigationActions } from 'react-navigation'
 
+import Interests from '../data/interests'
+
 let numberOfInterests = 5
 
 const resetSpecificInterests = NavigationActions.reset({
@@ -41,7 +43,7 @@ class InterestsScreen extends React.Component {
   }
 
   render(){
-    let items = Object.assign({},this.props.interests.map((x)=>Object.values(x)[0]))
+    let items = Object.assign({},Interests.interests.map((x)=>Object.values(x)[0]))
     return(
       <Container>
         <Header><Text style={{textAlign: 'center'}}>My Top 5 Interests</Text></Header>
